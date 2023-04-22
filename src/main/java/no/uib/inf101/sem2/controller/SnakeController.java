@@ -1,27 +1,47 @@
-package no.uib.inf101.sem2;
+package no.uib.inf101.sem2.controller;
 
 import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import no.uib.inf101.sem2.model.GameState;
+import no.uib.inf101.sem2.model.SnakeModel;
 import no.uib.inf101.sem2.view.SnakeView;
 
 import java.awt.event.KeyEvent;
 
-public class SnakeController extends JPanel implements KeyListener{
+public class SnakeController extends JPanel implements KeyListener {
     private SnakeModel model;
     private SnakeView view;
-
+    private Timer timer;
+    private int speed = 200;
 
     public SnakeController(SnakeModel model, SnakeView view) {
         this.model = model;
         this.view = view;
-        
 
         view.addKeyListener(this);
         view.setFocusable(true);
 
+        timer = new Timer(speed, e -> onTimerTick());
+        timer.start();
+        System.out.println("timer started" + speed);
+    }
+
+    private void onTimerTick() {
+        if (model.getGameState() == GameState.ACTIVE_GAME) {
+            model.move(model.getCurrentDirection());
+            GameSpeed();
+            view.repaint();
+        }
+    }
+
+    public void GameSpeed() {
+        int eatenApples = model.getScore();
+        int newSpeed = Math.max(50, 200 - (int) (eatenApples / 10) * 50);
+        speed = newSpeed;
+        timer.setDelay(speed);
     }
 
     @Override
@@ -63,16 +83,18 @@ public class SnakeController extends JPanel implements KeyListener{
                 } else if (model.getGameState() == GameState.PAUSED) {
                     model.startGame();
 
-
+                }
+                break;
+            case KeyEvent.VK_R:
+                System.out.println("r");
+                if (model.getGameState() == GameState.GAME_OVER) {
+                    model.restartGame();
                 }
                 break;
         }
-       
+
         view.repaint();
     }
-
-   
-
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -84,9 +106,3 @@ public class SnakeController extends JPanel implements KeyListener{
         // You can implement this method if needed
     }
 }
-
-
-
-
-
-
