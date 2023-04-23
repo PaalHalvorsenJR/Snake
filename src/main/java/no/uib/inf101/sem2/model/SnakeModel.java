@@ -314,7 +314,7 @@ public class SnakeModel implements ViewableSnakeModel {
             }
             boombEaten++;
 
-            findLevel();
+            // findLevel();
 
             // delete the last segment and set the color to black
             if (snake.getLength() > 1) {
@@ -342,7 +342,7 @@ public class SnakeModel implements ViewableSnakeModel {
     /**
      * If the game is over, the snake is reset to its initial position if
      * the player presses the restart button "r"
-     * 
+     * all the variables are reset to their initial values
      */
     public void restartGame() {
         gameState = GameState.ACTIVE_GAME;

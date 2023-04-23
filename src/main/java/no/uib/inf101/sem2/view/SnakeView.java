@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import javax.swing.JPanel;
 import javax.swing.plaf.FontUIResource;
@@ -99,6 +98,7 @@ public class SnakeView extends JPanel {
         g2d.setFont(new FontUIResource("Arial", FontUIResource.BOLD, 40));
         g2d.drawString("Press R to restart", this.getWidth() / 2 - 150, this.getHeight() / 2 + 100);
         g2d.drawString("Your score: " + model.getScore(), this.getWidth() / 2 - 150, this.getHeight() / 2 + 200);
+        g2d.drawString("You reached level  " + model.getLevel(), this.getWidth() / 2 - 150, this.getHeight() / 2 + 300);
 
     }
 
