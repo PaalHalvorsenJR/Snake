@@ -10,6 +10,8 @@ import no.uib.inf101.sem2.model.GameState;
  */
 public interface ViewableSnakeModel {
 
+    int boombEaten = 0;
+
     /**
      * Returns the dimension of the board.
      * 
@@ -45,5 +47,13 @@ public interface ViewableSnakeModel {
     public int getScore();
 
     public int getLevel();
+
+    public boolean snakeLives();
+
+    public int getBoombEaten();
+
+    public Object getCellColor(char c);
+
+    public Object gameOverColor();
 
 }

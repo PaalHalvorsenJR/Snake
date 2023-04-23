@@ -17,6 +17,12 @@ public class SnakeController extends JPanel implements KeyListener {
     private Timer timer;
     private int speed = 200;
 
+    /**
+     * Constructs a new SnakeController object with the given Snake model and view.
+     * 
+     * @param model
+     * @param view
+     */
     public SnakeController(SnakeModel model, SnakeView view) {
         this.model = model;
         this.view = view;
@@ -29,6 +35,10 @@ public class SnakeController extends JPanel implements KeyListener {
         System.out.println("timer started" + speed);
     }
 
+    /**
+     * This method is called every time the timer ticks, which is every 200 ms,
+     * it make the snake to move forward.
+     */
     private void onTimerTick() {
         if (model.getGameState() == GameState.ACTIVE_GAME) {
             model.move(model.getCurrentDirection());
@@ -37,6 +47,11 @@ public class SnakeController extends JPanel implements KeyListener {
         }
     }
 
+    /**
+     * This method is called every time the snake eats an apple, it makes the
+     * snake to move faster, the speed is calculated by the number of apples
+     * eaten. for every 10 apples eaten the speed is increased by 50 ms.
+     */
     public void GameSpeed() {
         int eatenApples = model.getScore();
         int newSpeed = Math.max(50, 200 - (int) (eatenApples / 10) * 50);
@@ -53,22 +68,34 @@ public class SnakeController extends JPanel implements KeyListener {
             case KeyEvent.VK_UP:
                 direction = SnakeModel.Direction.UP;
                 System.out.println("up" + direction);
-                model.move(direction);
+                if (model.getCurrentDirection() != SnakeModel.Direction.DOWN) {
+                    model.move(direction);
+                }
                 break;
             case KeyEvent.VK_DOWN:
                 direction = SnakeModel.Direction.DOWN;
                 System.out.println("down" + direction);
-                model.move(direction);
+                if (model.getCurrentDirection() != SnakeModel.Direction.UP) {
+                    model.move(direction);
+                }
+
                 break;
             case KeyEvent.VK_LEFT:
                 direction = SnakeModel.Direction.LEFT;
                 System.out.println("left" + direction);
-                model.move(direction);
+                if (model.getCurrentDirection() != SnakeModel.Direction.RIGHT) {
+                    model.move(direction);
+
+                }
+
                 break;
             case KeyEvent.VK_RIGHT:
                 direction = SnakeModel.Direction.RIGHT;
                 System.out.println("right" + direction);
-                model.move(direction);
+                if (model.getCurrentDirection() != SnakeModel.Direction.LEFT) {
+                    model.move(direction);
+                }
+
                 break;
             case KeyEvent.VK_SPACE:
                 System.out.println("space");

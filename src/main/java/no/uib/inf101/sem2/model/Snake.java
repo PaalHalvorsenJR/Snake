@@ -5,8 +5,6 @@ import java.util.List;
 import no.uib.inf101.sem2.model.SnakeModel.Direction;
 
 public class Snake {
-    private Integer[] position;
-    private int length;
     private List<Integer[]> body;
 
     /**
@@ -23,8 +21,6 @@ public class Snake {
      * @param body
      */
     public Snake(int length, Integer[] position, List<Integer[]> body) {
-        this.length = length;
-        this.position = position;
         this.body = body;
     }
 
@@ -39,6 +35,11 @@ public class Snake {
         return body;
     }
 
+    /**
+     * Returns the length of the snake
+     * 
+     * @return
+     */
     public int getLength() {
         return body.size();
     }

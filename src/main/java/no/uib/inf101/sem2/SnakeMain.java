@@ -1,14 +1,8 @@
 package no.uib.inf101.sem2;
 
-import java.net.URL;
-import java.net.URLClassLoader;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import no.uib.inf101.sem2.controller.SnakeController;
+import no.uib.inf101.sem2.model.SnakeBoard;
 import no.uib.inf101.sem2.model.SnakeModel;
 import no.uib.inf101.sem2.view.SnakeView;
 
