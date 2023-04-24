@@ -4,7 +4,12 @@ import java.util.List;
 
 import no.uib.inf101.sem2.model.SnakeModel.Direction;
 
+/**
+ * Represents a snake in the game
+ */
+
 public class Snake {
+    private int length;
     private List<Integer[]> body;
 
     /**
@@ -21,6 +26,7 @@ public class Snake {
      * @param body
      */
     public Snake(int length, Integer[] position, List<Integer[]> body) {
+        this.length = length;
         this.body = body;
     }
 
@@ -53,36 +59,6 @@ public class Snake {
      */
     public Integer[] getHead() {
         return body.get(0);
-    }
-
-    /**
-     * Moves the snake in the given direction and updates the body
-     * 
-     * @param direction
-     */
-    public void move(Direction direction) {
-        Integer[] newPosition = new Integer[2]; // I set the integer array to 2 because it is a 2D array
-        Integer[] snakeHead = getHead();
-        switch (direction) {
-            case UP:
-                newPosition[0] = snakeHead[0] - 1;
-                newPosition[1] = snakeHead[1];
-                break;
-            case DOWN:
-                newPosition[0] = snakeHead[0] + 1;
-                newPosition[1] = snakeHead[1];
-                break;
-            case LEFT:
-                newPosition[0] = snakeHead[0];
-                newPosition[1] = snakeHead[1] - 1;
-                break;
-            case RIGHT:
-                newPosition[0] = snakeHead[0];
-                newPosition[1] = snakeHead[1] + 1;
-                break;
-        }
-        body.add(0, newPosition); // Adds the new position to the head of the list
-        body.remove(body.size() - 1); // Removes the last element in the list
     }
 
 }

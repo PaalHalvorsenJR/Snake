@@ -171,14 +171,14 @@ public class SnakeModel implements ViewableSnakeModel {
 
         Integer[] oldHead = snake.getHead();
         // Get the index of the last segment in the snake body
-        int lastSegmentIndex = snake.getBody().size() - 1; // Subtract 1 because the index starts at 0
+        int lastSegmentIndex = snake.getBody().size() - 1;
         Integer[] lastSegment = snake.getBody().get(lastSegmentIndex); // Get the last segment
-        snake.move(direction); // Move the snake
+        moveTheSnake(direction);
         Integer[] newHead = snake.getHead();
         checkCollisionAndMoveBomb(lastSegment);
         // Set the board cells
-        board.set(new CellPosition(oldHead[0], oldHead[1]), 'S'); // Clear the cell where the head was
-        board.set(new CellPosition(newHead[0], newHead[1]), 'O'); // Draw the new head position
+        board.set(new CellPosition(oldHead[0], oldHead[1]), 'S');
+        board.set(new CellPosition(newHead[0], newHead[1]), 'O');
 
         if (snakeLives()) {
             gameState = GameState.GAME_OVER;
@@ -189,8 +189,8 @@ public class SnakeModel implements ViewableSnakeModel {
             gameState = GameState.GAME_OVER;
             return;
         }
-        if (!checkCollisionAndMoveApple(lastSegment)) { // If the snake didn't eat an apple
-            board.set(new CellPosition(lastSegment[0], lastSegment[1]), ' '); // Clear the cell where the tail was
+        if (!checkCollisionAndMoveApple(lastSegment)) {
+            board.set(new CellPosition(lastSegment[0], lastSegment[1]), ' ');
         }
         checkCollisionAndMoveBomb(lastSegment);
         // Print some debug info to the console (for testing)
@@ -211,7 +211,7 @@ public class SnakeModel implements ViewableSnakeModel {
      * @param direction the direction to move the snake in
      * @return true if the move is valid, false otherwise
      */
-    private boolean isValidMove(Direction direction) {
+    private Integer[] getNewPosition(Direction direction) {
         Integer[] snakeHead = snake.getHead();
         Integer[] newPosition = new Integer[2];
 
@@ -233,13 +233,39 @@ public class SnakeModel implements ViewableSnakeModel {
                 newPosition[1] = snakeHead[1] + 1;
                 break;
         }
-        // Check if the new position is outside the board
+        return newPosition;
+    }
+
+    /**
+     * Determines if the spesified direction is a valid move for the head of the
+     * snake
+     * A move is valid if the snake is not moving out of bounds
+     * 
+     * @param direction the direction to move the snake in
+     * @return true if the move is valid, false otherwise
+     */
+    private boolean isValidMove(Direction direction) {
+        Integer[] newPosition = getNewPosition(direction);
         if (newPosition[0] < 0 || newPosition[0] >= board.rows() || newPosition[1] < 0
                 || newPosition[1] >= board.cols()) {
             return false;
         }
-
         return true;
+    }
+
+    /**
+     * Moves the snake in the specified direction. The method updates the snake's
+     * position and removes the last segment
+     * 
+     * @param direction the direction to move the snake in
+     */
+    public void moveTheSnake(Direction direction) {
+        Integer[] newPosition = getNewPosition(direction);
+
+        if (isValidMove(direction)) {
+            snake.getBody().add(0, newPosition);
+            snake.getBody().remove(snake.getBody().size() - 1);
+        }
     }
 
     /**
