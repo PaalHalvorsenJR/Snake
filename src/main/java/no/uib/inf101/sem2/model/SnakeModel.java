@@ -201,12 +201,10 @@ public class SnakeModel implements ViewableSnakeModel {
     }
 
     /**
-     * Determines if the spesified direction is a valid move for the head of the
-     * snake
-     * A move is valid if the snake is not moving out of bounds
+     * Calculates the new position of the snake's head based on the direction
      * 
      * @param direction the direction to move the snake in
-     * @return true if the move is valid, false otherwise
+     * @return an integer array containing the new position of the snake's head
      */
     private Integer[] getNewPosition(Direction direction) {
         Integer[] snakeHead = snake.getHead();

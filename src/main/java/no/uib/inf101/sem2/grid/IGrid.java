@@ -4,6 +4,7 @@ package no.uib.inf101.sem2.grid;
  * A 2-dimensional grid data structure that stores elements of type E.
  * 
  * @param <E> The type of elements to store in the grid.
+ *            I have implemented this class from the Tetris project.
  */
 public interface IGrid<E> extends GridDimension, Iterable<GridCell<E>> {
 
