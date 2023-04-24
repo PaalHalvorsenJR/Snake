@@ -10,8 +10,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import no.uib.inf101.sem2.model.SnakeModel.Direction;
-
 public class TestSnake {
 
     //

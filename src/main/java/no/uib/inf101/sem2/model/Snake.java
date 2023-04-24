@@ -2,14 +2,11 @@ package no.uib.inf101.sem2.model;
 
 import java.util.List;
 
-import no.uib.inf101.sem2.model.SnakeModel.Direction;
-
 /**
  * Represents a snake in the game
  */
 
 public class Snake {
-    private int length;
     private List<Integer[]> body;
 
     /**
@@ -26,7 +23,6 @@ public class Snake {
      * @param body
      */
     public Snake(int length, Integer[] position, List<Integer[]> body) {
-        this.length = length;
         this.body = body;
     }
 
