@@ -17,7 +17,6 @@ class TestSnakeModel {
     public void sanityTest() {
         SnakeModel model = new SnakeModel(new SnakeBoard(20, 20));
         assertNotNull(model);
-
     }
 
     @Test

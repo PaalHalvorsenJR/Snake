@@ -21,7 +21,6 @@ import no.uib.inf101.sem2.view.ViewableSnakeModel;
  * The class implements the ViewableSnakeModel interface, which defines the
  * methods that the view
  * can use to get information about the model.
- * 
  */
 
 public class SnakeModel implements ViewableSnakeModel {
@@ -138,17 +137,15 @@ public class SnakeModel implements ViewableSnakeModel {
             newCol = (int) (Math.random() * board.cols()); // Generate a random column
             validPosition = true;
 
-            // Check if the new position is occupied by the snake
-            for (Integer[] segment : snake.getBody()) { // Loop through all the snake's body segments
-                if (segment[0] == newRow && segment[1] == newCol) { // If the segment's position is the same as the new
-                                                                    // position
-                    validPosition = false; // The position is not valid
+            for (Integer[] segment : snake.getBody()) {
+                if (segment[0] == newRow && segment[1] == newCol) {
+
+                    validPosition = false;
                     break;
                 }
             }
-        } while (!validPosition); // Loop until a valid position is found
+        } while (!validPosition);
 
-        // Update the apple's position and set it on the board
         boomb = new int[] { newRow, newCol };
         board.set(new CellPosition(boomb[0], boomb[1]), 'B');
     }
@@ -276,7 +273,7 @@ public class SnakeModel implements ViewableSnakeModel {
      * @return true if the snake has collided with itself, false otherwise
      */
     private boolean collidesWithItself() {
-        Integer[] snakeHead = snake.getHead(); // Get the snake's head position
+        Integer[] snakeHead = snake.getHead();
 
         // Iterate through the snake's body segments, excluding the head
         for (int i = 1; i < snake.getBody().size(); i++) {
@@ -307,11 +304,9 @@ public class SnakeModel implements ViewableSnakeModel {
 
             score++;
             epleEaten++;
-            // Spawn a new apple at a valid position
+
             spawnFood();
             findLevel();
-
-            // Grow the snake by adding a new segment // Get the last segment // Duplicate
 
             snake.getBody().add(lastSegment); // Add the new segment to the snake's body
             return true;
@@ -329,20 +324,16 @@ public class SnakeModel implements ViewableSnakeModel {
      * @return true if the snake has collided with the boomb, false otherwise
      */
     private boolean checkCollisionAndMoveBomb(Integer[] lastSegment) {
-        Integer[] snakeHead = snake.getHead(); // Get the snake's head position
+        Integer[] snakeHead = snake.getHead();
 
         // Check if the snake's head is at the same position as the apple
         if (snakeHead[0] == boomb[0] && snakeHead[1] == boomb[1]) {
-            // spawn 3 new bombs at a valid position
             spawnBoomb();
             if (score > 0) {
                 score--;
             }
             boombEaten++;
 
-            // findLevel();
-
-            // delete the last segment and set the color to black
             if (snake.getLength() > 1) {
                 Integer[] segment = snake.getBody().get(snake.getLength() - 1);
                 snake.getBody().remove(snake.getLength() - 1);

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Testing the class CellPosition
+ * Have implemented these tests form Tetris project
  */
 public class CellPositionTest {
 

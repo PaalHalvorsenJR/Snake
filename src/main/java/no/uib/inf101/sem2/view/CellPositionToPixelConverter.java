@@ -8,21 +8,23 @@ import no.uib.inf101.sem2.grid.GridDimension;
  * A CellPositionToPixelConverter converts cell positions to pixel positions.
  * 
  * @param margin The margin around the grid.
- * @param gd The grid dimension.
- * @param box The bounding box of the grid.
- *  
+ * @param gd     The grid dimension.
+ * @param box    The bounding box of the grid.
+ * 
+ *               I have implemented this class from the Tetris project.
+ * 
  */
 public class CellPositionToPixelConverter {
-  private double margin; 
-  private GridDimension gd; 
-  private Rectangle2D box; 
+  private double margin;
+  private GridDimension gd;
+  private Rectangle2D box;
 
   /**
    * Creates a new CellPositionToPixelConverter.
    * 
    * @param margin The margin around the grid.
-   * @param gd The grid dimension.
-   * @param box The bounding box of the grid.
+   * @param gd     The grid dimension.
+   * @param box    The bounding box of the grid.
    */
 
   public CellPositionToPixelConverter(Rectangle2D box, GridDimension gd, double margin) {
@@ -46,4 +48,3 @@ public class CellPositionToPixelConverter {
     return new Rectangle2D.Double(x, y, w, h);
   }
 }
-
